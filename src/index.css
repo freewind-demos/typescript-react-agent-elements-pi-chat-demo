@@ -1,0 +1,20 @@
+/* 全局样式入口：Tailwind v4 + Agent Elements 的 token 层 + 主题皮肤 */
+@import "tailwindcss";
+
+/*
+ * Agent Elements 官方的样式层：--an-* 变量 + @theme 映射 + 动效类。
+ * 这份 CSS 由 shadcn add 自动装进来（registry 自带），不要手改，也不要复制第二份。
+ */
+@import "./components/agent-elements/agent-ui.css";
+
+/* 各套皮肤，只覆盖 CSS 变量，不写任何组件样式 */
+@import "./styles/themes.css";
+
+/*
+ * 全项目唯一一处自定义样式：让根节点撑满视口。
+ * AgentChat 是 flex 布局，父容器没高度就会塌成 0，聊天区不显示。
+ * 除这一行外不加任何装饰性样式、不改组件 class。
+ */
+#root {
+  height: 100dvh;
+}

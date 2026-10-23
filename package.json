@@ -1,0 +1,40 @@
+{
+  "name": "typescript-react-agent-elements-pi-chat-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host --open",
+    "start": "tsx watch src/server/main.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.9.0",
+    "@pierre/diffs": "^1.6.1",
+    "@streamdown/code": "^2.0.0",
+    "@tabler/icons-react": "^3.49.0",
+    "@ts-rest/core": "3.52.1",
+    "@ts-rest/express": "3.52.1",
+    "ai": "^6.0.312",
+    "clsx": "^2.1.1",
+    "express": "^4.22.3",
+    "lottie-react": "^2.4.2",
+    "next-themes": "^0.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "streamdown": "^2.7.1",
+    "tailwind-merge": "^3.7.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/express": "^4.17.25",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5"
+  }
+}
