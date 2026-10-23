@@ -120,16 +120,16 @@ export function usePiChat() {
 
       const historyResult = await api.getMessages();
       if (historyResult.status !== 200) return;
-      setMessages(
-        historyResult.body.messages.map(
-          (item) =>
-            ({
-              id: item.id,
-              role: item.role,
-              parts: [{ type: "text", text: item.text }],
-            }) as unknown as UIMessage,
-        ),
+      const history = historyResult.body.messages.map(
+        (item) =>
+          ({
+            id: item.id,
+            role: item.role,
+            parts: [{ type: "text", text: item.text }],
+          }) as unknown as UIMessage,
       );
+      // 只在还没有任何消息时回填：否则拉历史的慢请求会回来把刚发出的消息冲掉
+      setMessages((prev) => (prev.length > 0 ? prev : history));
     })();
   }, []);
 
