@@ -1,8 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-// lottie-react v2 是默认导出，v3 改成命名导出，这里锁 v2
-import Lottie from "lottie-react";
+// lottie-react v2 是默认导出；Vite 下这个包可能被包成 { default: Component }，
+// 直接当组件用会在运行时拿到对象，报 Element type is invalid，所以先兜一层
+import LottieImport from "lottie-react";
+
+const Lottie = ((LottieImport as unknown as { default?: unknown }).default ??
+  LottieImport) as any;
 import { cn } from "./utils/cn";
 import { spiralFastData, spiralSlowData } from "./spiral-loader-data";
 
