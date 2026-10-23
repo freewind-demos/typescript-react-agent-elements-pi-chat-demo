@@ -6,6 +6,24 @@
  * 切换方式：document.documentElement.dataset.theme = "zinc"。
  */
 
+/*
+ * shadcn 的派生变量：全部引用本文件里各套主题覆盖的基础变量，
+ * 所以换肤时卡片、弹层、次要色、输入框边框会跟着一起变。
+ */
+:root {
+  --radius: 16px;
+  --card: var(--background);
+  --card-foreground: var(--foreground);
+  --popover: var(--background);
+  --popover-foreground: var(--foreground);
+  --secondary: var(--muted);
+  --secondary-foreground: var(--foreground);
+  --accent: var(--muted);
+  --accent-foreground: var(--foreground);
+  --destructive: #dc2626;
+  --input: var(--border);
+}
+
 /* ---------- neutral：无彩色 ---------- */
 :root[data-theme="neutral"] {
   --background: #ffffff;
@@ -74,7 +92,7 @@
 
 /* ---------- slate：蓝灰 ---------- */
 :root[data-theme="slate"] {
-  --background: #ffffff;
+  --background: #f8fafc;
   --foreground: #0f172a;
   --border: #e2e8f0;
   --muted: #f1f5f9;
@@ -83,7 +101,7 @@
   --primary-foreground: #f8fafc;
   --ring: #94a3b8;
 
-  --an-background: #ffffff;
+  --an-background: #f8fafc;
   --an-background-secondary: #f1f5f9;
   --an-background-tertiary: #f8fafc;
   --an-foreground: #0f172a;
@@ -107,7 +125,7 @@
 
 /* ---------- stone：暖灰 ---------- */
 :root[data-theme="stone"] {
-  --background: #ffffff;
+  --background: #fafaf9;
   --foreground: #1c1917;
   --border: #e7e5e4;
   --muted: #f5f5f4;
@@ -116,7 +134,7 @@
   --primary-foreground: #fafaf9;
   --ring: #a8a29e;
 
-  --an-background: #ffffff;
+  --an-background: #fafaf9;
   --an-background-secondary: #f5f5f4;
   --an-background-tertiary: #fafaf9;
   --an-foreground: #1c1917;
@@ -140,7 +158,7 @@
 
 /* ---------- gray：中性灰 ---------- */
 :root[data-theme="gray"] {
-  --background: #ffffff;
+  --background: #f9fafb;
   --foreground: #111827;
   --border: #e5e7eb;
   --muted: #f3f4f6;
@@ -149,7 +167,7 @@
   --primary-foreground: #f9fafb;
   --ring: #9ca3af;
 
-  --an-background: #ffffff;
+  --an-background: #f9fafb;
   --an-background-secondary: #f3f4f6;
   --an-background-tertiary: #f9fafb;
   --an-foreground: #111827;
@@ -173,22 +191,22 @@
 
 /* ---------- red：红色主色 ---------- */
 :root[data-theme="red"] {
-  --background: #ffffff;
+  --background: #fffafa;
   --foreground: #18181b;
-  --border: #e4e4e7;
+  --border: #f5d5d5;
   --muted: #fef2f2;
   --muted-foreground: #71717a;
   --primary: #dc2626;
   --primary-foreground: #fefefe;
   --ring: #f87171;
 
-  --an-background: #ffffff;
+  --an-background: #fffafa;
   --an-background-secondary: #fef2f2;
   --an-background-tertiary: #fff5f5;
   --an-foreground: #18181b;
   --an-foreground-muted: #71717a;
   --an-foreground-subtle: #a1a1aa;
-  --an-border-color: #e4e4e7;
+  --an-border-color: #f5d5d5;
   --an-primary-color: #dc2626;
   --an-user-message-bg: #fef2f2;
   --an-user-message-text: #18181b;
@@ -206,22 +224,22 @@
 
 /* ---------- rose：玫红 ---------- */
 :root[data-theme="rose"] {
-  --background: #ffffff;
+  --background: #fffafb;
   --foreground: #18181b;
-  --border: #e4e4e7;
+  --border: #fbd5e0;
   --muted: #fff1f2;
   --muted-foreground: #71717a;
   --primary: #e11d48;
   --primary-foreground: #ffffff;
   --ring: #fb7185;
 
-  --an-background: #ffffff;
+  --an-background: #fffafb;
   --an-background-secondary: #fff1f2;
   --an-background-tertiary: #fff5f6;
   --an-foreground: #18181b;
   --an-foreground-muted: #71717a;
   --an-foreground-subtle: #a1a1aa;
-  --an-border-color: #e4e4e7;
+  --an-border-color: #fbd5e0;
   --an-primary-color: #e11d48;
   --an-user-message-bg: #fff1f2;
   --an-user-message-text: #18181b;
@@ -239,22 +257,22 @@
 
 /* ---------- orange：橙色 ---------- */
 :root[data-theme="orange"] {
-  --background: #ffffff;
+  --background: #fffcf8;
   --foreground: #18181b;
-  --border: #e4e4e7;
+  --border: #fbe0c8;
   --muted: #fff7ed;
   --muted-foreground: #71717a;
   --primary: #ea580c;
   --primary-foreground: #ffffff;
   --ring: #fb923c;
 
-  --an-background: #ffffff;
+  --an-background: #fffcf8;
   --an-background-secondary: #fff7ed;
   --an-background-tertiary: #fffbf5;
   --an-foreground: #18181b;
   --an-foreground-muted: #71717a;
   --an-foreground-subtle: #a1a1aa;
-  --an-border-color: #e4e4e7;
+  --an-border-color: #fbe0c8;
   --an-primary-color: #ea580c;
   --an-user-message-bg: #fff7ed;
   --an-user-message-text: #18181b;
@@ -272,22 +290,22 @@
 
 /* ---------- green：绿色 ---------- */
 :root[data-theme="green"] {
-  --background: #ffffff;
+  --background: #fafffb;
   --foreground: #18181b;
-  --border: #e4e4e7;
+  --border: #d3ecdb;
   --muted: #f0fdf4;
   --muted-foreground: #71717a;
   --primary: #16a34a;
   --primary-foreground: #ffffff;
   --ring: #4ade80;
 
-  --an-background: #ffffff;
+  --an-background: #fafffb;
   --an-background-secondary: #f0fdf4;
   --an-background-tertiary: #f6fefa;
   --an-foreground: #18181b;
   --an-foreground-muted: #71717a;
   --an-foreground-subtle: #a1a1aa;
-  --an-border-color: #e4e4e7;
+  --an-border-color: #d3ecdb;
   --an-primary-color: #16a34a;
   --an-user-message-bg: #f0fdf4;
   --an-user-message-text: #18181b;
@@ -305,22 +323,22 @@
 
 /* ---------- blue：蓝色，与库默认值一致 ---------- */
 :root[data-theme="blue"] {
-  --background: #ffffff;
+  --background: #fafcff;
   --foreground: #18181b;
-  --border: #e4e4e7;
+  --border: #d8e4fb;
   --muted: #eff6ff;
   --muted-foreground: #71717a;
   --primary: #2563eb;
   --primary-foreground: #ffffff;
   --ring: #60a5fa;
 
-  --an-background: #ffffff;
+  --an-background: #fafcff;
   --an-background-secondary: #eff6ff;
   --an-background-tertiary: #f5f9ff;
   --an-foreground: #18181b;
   --an-foreground-muted: #71717a;
   --an-foreground-subtle: #a1a1aa;
-  --an-border-color: #e4e4e7;
+  --an-border-color: #d8e4fb;
   --an-primary-color: #2563eb;
   --an-user-message-bg: #eff6ff;
   --an-user-message-text: #18181b;

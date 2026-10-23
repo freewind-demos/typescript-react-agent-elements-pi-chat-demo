@@ -11,9 +11,39 @@
 @import "./styles/themes.css";
 
 /*
- * 全项目唯一一处自定义样式：让根节点撑满视口。
- * AgentChat 是 flex 布局，父容器没高度就会塌成 0，聊天区不显示。
- * 除这一行外不加任何装饰性样式、不改组件 class。
+ * shadcn 的变量映射：把 --background 这类变量变成 Tailwind 的 utility。
+ * 组件里大量用 text-foreground / border-border / bg-muted / text-muted-foreground，
+ * 少了这一段这些 utility 根本不会生成，换肤就只能影响 --an-* 那一部分。
+ */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* 圆角梯度，供 shadcn 风格的 rounded-* 使用 */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+/*
+ * 让根节点撑满视口：AgentChat 是 flex 布局，父容器没高度就会塌成 0。
  */
 #root {
   height: 100dvh;

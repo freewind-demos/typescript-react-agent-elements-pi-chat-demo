@@ -73,7 +73,13 @@ pnpm dev
 
 `src/components/pi-chat-page.tsx` 是唯一对外组件。整个 chat 是一块悬浮在页面右侧的侧栏：最大宽度 420、圆角、边框、阴影，四周留边距，页面本身只当背景。设置不单独占面板，模型（带搜索）、thinking、皮肤三处都是输入框工具栏上的下拉；下拉有高度上限与滚动，模型多到 80+ 个也能用。图片用隐藏的 `input[type=file]` 选，也支持粘贴。
 
-样式方面有一处必须知道：Agent Elements 的 registry 除了组件，还会装一份 `src/components/agent-elements/agent-ui.css`，并在 `src/index.css` 里自动加一行 `@import`。这份 CSS 是 `--an-*` 变量与 `@theme` 映射的来源，删掉它组件就会掉样式。换肤只改 `src/styles/themes.css` 里的变量值，不动组件 class。
+样式方面有两处必须知道。
+
+一是 Agent Elements 的 registry 除了组件，还会装一份 `src/components/agent-elements/agent-ui.css`，并在 `src/index.css` 里自动加一行 `@import`。这份 CSS 是 `--an-*` 变量与 `@theme` 映射的来源，删掉它组件就会掉样式。
+
+二是 `src/index.css` 里还有一块 shadcn 的 `@theme inline`。组件大量使用 `text-foreground`、`border-border`、`bg-muted` 这类 utility，它们靠这块映射把 `--background` 这些变量接进 Tailwind。缺了它，这些 utility 不会生成，换肤就只能影响一半，看上去像“只改了背景色”。
+
+换肤只改 `src/styles/themes.css` 里的变量值，同时给 shadcn 变量与 `--an-*` 变量赋值，所以面板、气泡、工具卡片、边框、按钮会一起变色，不需要改任何组件 class。
 
 10 套皮肤是 `neutral`、`zinc`、`slate`、`stone`、`gray`、`red`、`rose`、`orange`、`green`、`blue`。每套同时给 shadcn 变量（`--background`、`--primary` 等）与 Agent Elements 变量（`--an-background`、`--an-primary-color` 等）赋值，所以外壳与聊天组件会一起变色。切换只是把 `data-theme` 写到 `<html>` 上，并记进 `localStorage`。
 
