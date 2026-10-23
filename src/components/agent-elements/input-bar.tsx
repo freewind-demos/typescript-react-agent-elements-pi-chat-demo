@@ -201,10 +201,21 @@ export const InputBar = memo(function InputBar({
 
   const handleSubmit = useCallback(() => {
     const trimmed = input.trim();
-    if (!trimmed || isStreaming || disabled) return;
+    // 带附件时允许空文本：贴图不写字也能发
+    const hasAttachments =
+      attachedImages.length > 0 || attachedFiles.length > 0;
+    if ((!trimmed && !hasAttachments) || isStreaming || disabled) return;
     onSend({ role: "user", content: trimmed });
     setInput("");
-  }, [input, isStreaming, disabled, onSend, setInput]);
+  }, [
+    input,
+    isStreaming,
+    disabled,
+    onSend,
+    setInput,
+    attachedImages.length,
+    attachedFiles.length,
+  ]);
 
   const handleInfoBarClose = useCallback(() => {
     setIsInfoBarOpen(false);
@@ -377,8 +388,9 @@ export const InputBar = memo(function InputBar({
     [handleSubmit],
   );
 
-  const hasInput = input.trim().length > 0;
   const hasContextItems = attachedImages.length > 0 || attachedFiles.length > 0;
+  // 只有图片、没有文字时也算有内容，允许直接发送
+  const hasInput = input.trim().length > 0 || hasContextItems;
   const showContextItems =
     hasContextItems && config.attachmentPreviewStyle !== "hidden";
   const imageDisplayMode =
