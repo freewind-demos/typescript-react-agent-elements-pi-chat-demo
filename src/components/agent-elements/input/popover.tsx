@@ -37,6 +37,8 @@ export function Popover({
       onOpenChange={onOpenChange ? (next) => onOpenChange(next) : undefined}
     >
       <BasePopover.Trigger
+        // trigger 内部本来就是一个真 button，外层 span 只做布局，关掉原生 button 语义要求
+        nativeButton={false}
         render={(props) => (
           <span {...props} className="inline-flex">
             {trigger}
@@ -46,6 +48,12 @@ export function Popover({
       <BasePopover.Portal>
         <BasePopover.Positioner side={side} align={align} sideOffset={sideOffset}>
           <BasePopover.Popup
+            /*
+             * 列表最长 80+ 项，不限制高度会直接铺满并超出视口，
+             * 超出部分既看不到也点不到，所以这里给一个高度上限并允许滚动。
+             * 这是唯一必要的可用性修正，不涉及配色与外观。
+             */
+            style={{ maxHeight: "min(60vh, 420px)", overflowY: "auto" }}
             className={cn(
               "min-w-[180px] rounded-[10px] border border-an-border-color bg-an-background p-1 shadow-lg outline-none",
               "text-an-foreground",

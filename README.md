@@ -71,7 +71,7 @@ pnpm dev
 
 `src/server/tool-part.ts` 是 pi 工具名到库卡片名的映射。`bash` 映射成 `tool-Bash`，`edit` 成 `tool-Edit`，`write` 成 `tool-Write`，`grep` 成 `tool-Grep`，`find` 与 `ls` 成 `tool-Glob`，`tool_search` 成 `tool-WebSearch`，`mcp__` 开头的原样保留（库会识别成 MCP 工具），其余转大驼峰后落到通用卡片。
 
-`src/components/pi-chat-page.tsx` 是唯一对外组件。它把 `AgentChat` 的 `slots.InputBar` 换成一个带工具栏的输入框：左边是模型下拉（带搜索）与 thinking 下拉，右边是皮肤下拉。图片用隐藏的 `input[type=file]` 选，粘贴也支持。
+`src/components/pi-chat-page.tsx` 是唯一对外组件。它在 `AgentChat` 右侧放了一个常驻设置侧栏：底部工具栏的三个入口（模型、thinking、皮肤）点一下，侧栏就从右侧展开并定位到对应区块，之后一直保持，除非点右上角关闭。侧栏里模型带搜索，因为模型可能有 80 多个。图片用隐藏的 `input[type=file]` 选，也支持粘贴。
 
 样式方面有一处必须知道：Agent Elements 的 registry 除了组件，还会装一份 `src/components/agent-elements/agent-ui.css`，并在 `src/index.css` 里自动加一行 `@import`。这份 CSS 是 `--an-*` 变量与 `@theme` 映射的来源，删掉它组件就会掉样式。换肤只改 `src/styles/themes.css` 里的变量值，不动组件 class。
 
