@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useCallback, useState } from "react";
+import { memo, useCallback, useMemo, useState } from "react";
 import type { ComponentType } from "react";
 import { IconCheck, IconChevronDown } from "@tabler/icons-react";
 import { cn } from "../utils/cn";
@@ -43,6 +43,16 @@ export const ModeSelector = memo(function ModeSelector({
     [isControlled, onChange],
   );
 
+  // 搜索关键词：皮肤与 thinking 等级也走同一套过滤
+  const [query, setQuery] = useState("");
+  const filtered = useMemo(() => {
+    const keyword = query.trim().toLowerCase();
+    if (!keyword) return modes;
+    return modes.filter((mode) =>
+      `${mode.label} ${mode.description ?? ""}`.toLowerCase().includes(keyword),
+    );
+  }, [modes, query]);
+
   if (modes.length === 0) return null;
   const ActiveIcon = activeMode?.icon;
   const hasMultiple = modes.length > 1;
@@ -73,7 +83,12 @@ export const ModeSelector = memo(function ModeSelector({
       align="start"
       trigger={trigger}
     >
-      {modes.map((mode) => {
+      <input
+        value={query}
+        onChange={(event) => setQuery(event.target.value)}
+        placeholder="Search"
+      />
+      {filtered.map((mode) => {
         const isActive = mode.id === activeMode?.id;
         const Icon = mode.icon;
         return (
