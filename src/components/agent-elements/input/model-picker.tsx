@@ -80,6 +80,7 @@ export const ModelPicker = memo(function ModelPicker({
         value={query}
         onChange={(event) => setQuery(event.target.value)}
         placeholder="Search"
+        className="w-full"
       />
       {filtered.map((model) => {
         const isActive = model.id === activeModel?.id;

@@ -87,6 +87,7 @@ export const ModeSelector = memo(function ModeSelector({
         value={query}
         onChange={(event) => setQuery(event.target.value)}
         placeholder="Search"
+        className="w-full"
       />
       {filtered.map((mode) => {
         const isActive = mode.id === activeMode?.id;
