@@ -54,6 +54,13 @@ export function Popover({
              * 这是唯一必要的可用性修正，不涉及配色与外观。
              */
             style={{ maxHeight: "min(60vh, 420px)", overflowY: "auto" }}
+            /*
+             * 弹层是 React Portal，事件仍会沿 React 树冒泡回 InputBar 容器。
+             * InputBar 的容器点击会把焦点抢给 textarea，导致点搜索框后没法输入，
+             * 所以这里阻断冒泡。
+             */
+            onPointerDown={(event) => event.stopPropagation()}
+            onClick={(event) => event.stopPropagation()}
             className={cn(
               "min-w-[180px] rounded-[10px] border border-an-border-color bg-an-background p-1 shadow-lg outline-none",
               "text-an-foreground",
